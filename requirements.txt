@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+sentence-transformers
+numpy
+torch
+torchvision
+pillow
+clip-anytorch
+vaderSentiment
+scikit-learn
