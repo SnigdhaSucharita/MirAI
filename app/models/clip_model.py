@@ -3,11 +3,23 @@ import clip
 from PIL import Image
 from app.core.config import DEVICE
 
-model, preprocess = clip.load("ViT-B/32", device=DEVICE)
-model.eval()
+_model = None
+_preprocess = None
+
+
+def get_clip_model():
+    global _model, _preprocess
+
+    if _model is None:
+        _model, _preprocess = clip.load("ViT-B/32", device=DEVICE)
+        _model.eval()
+
+    return _model, _preprocess
 
 
 def encode_image(image_path: str) -> torch.Tensor:
+    model, preprocess = get_clip_model()
+
     image = preprocess(
         Image.open(image_path).convert("RGB")
     ).unsqueeze(0).to(DEVICE)
@@ -20,6 +32,8 @@ def encode_image(image_path: str) -> torch.Tensor:
 
 
 def encode_text(texts: list[str]) -> torch.Tensor:
+    model, _ = get_clip_model()
+
     tokens = clip.tokenize(texts).to(DEVICE)
 
     with torch.no_grad():
@@ -27,4 +41,5 @@ def encode_text(texts: list[str]) -> torch.Tensor:
         embedding /= embedding.norm(dim=-1, keepdim=True)
 
     return embedding
+
 

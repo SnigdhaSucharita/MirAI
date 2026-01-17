@@ -9,6 +9,12 @@ app = FastAPI(title="MirAI")
 @app.on_event("startup")
 def startup_event():
     print("MirAI service starting up...")
+    from app.models.clip_model import get_clip_model
+    get_clip_model()
+    
+@app.get("/health")
+def health():
+    return {"status": "ok"}
 
 app.include_router(semantic_router)
 app.include_router(picstoria_router)

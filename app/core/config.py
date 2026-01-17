@@ -1,1 +1,1 @@
-DEVICE = "cuda" if False else "cpu"
+DEVICE = "cpu"
