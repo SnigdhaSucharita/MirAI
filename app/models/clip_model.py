@@ -1,5 +1,6 @@
 import torch
 import clip
+import numpy as np
 from PIL import Image
 from app.core.config import DEVICE
 
