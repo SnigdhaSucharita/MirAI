@@ -2,6 +2,7 @@ from PIL import Image
 import numpy as np
 import os
 from sklearn.cluster import KMeans
+from app.utils.image_loader import download_image
 
 def extract_color_palette(
     image_url: str,
