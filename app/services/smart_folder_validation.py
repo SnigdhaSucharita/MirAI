@@ -1,4 +1,5 @@
-from app.services.semantic import embed_texts, cosine_similarity
+from app.services.semantic import cosine_similarity
+from app.models.clip_model import encode_single_text
 
 
 def validate_folder(
@@ -8,10 +9,10 @@ def validate_folder(
     threshold: float
 ):
 
-    doc_embedding = embed_texts([document_text])[0]
+    doc_embedding = encode_single_text(document_text)
 
 
-    target_embedding = embed_texts([target_folder["description"]])[0]
+    target_embedding = encode_single_text(target_folder["description"])
     target_score = cosine_similarity(doc_embedding, target_embedding)
 
 
@@ -19,7 +20,7 @@ def validate_folder(
     best_score = target_score
 
     for folder in available_folders:
-        folder_embedding = embed_texts([folder["description"]])[0]
+        folder_embedding = encode_single_text(folder["description"])
         score = cosine_similarity(doc_embedding, folder_embedding)
 
         if score > best_score:

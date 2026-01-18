@@ -1,4 +1,5 @@
-from app.services.semantic import embed_texts, cosine_similarity
+from app.services.semantic import cosine_similarity
+from app.models.clip_model import encode_text
 
 def semantic_movie_search(query: str, movies: list, min_score: float = 0.25):
     texts = [query] + [
@@ -6,7 +7,7 @@ def semantic_movie_search(query: str, movies: list, min_score: float = 0.25):
         for movie in movies
     ]
 
-    embeddings = embed_texts(texts)
+    embeddings = encode_text(texts)
     query_vec = embeddings[0]
     movie_vecs = embeddings[1:]
 

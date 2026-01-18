@@ -43,3 +43,7 @@ def encode_text(texts: list[str]) -> torch.Tensor:
     return embedding
 
 
+def encode_single_text(text: str) -> np.ndarray:
+    return encode_text([text])[0]
+
+

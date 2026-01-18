@@ -13,7 +13,7 @@ def recommend_images(
     top_k: int = 5,
     score_threshold: float = 0.25
 ):
-    # Download query image
+
     query_image_path = download_image(query_image_url)
     query_vec = encode_image(query_image_path)
     os.remove(query_image_path)

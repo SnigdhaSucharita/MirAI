@@ -1,4 +1,4 @@
-from app.services.semantic import embed_texts
+from app.models.clip_model import encode_single_text
 from app.utils.chunking import sentence_chunk
 from app.utils.mmr import mmr_select_sentences
 import numpy as np
@@ -20,9 +20,9 @@ def summarize_document(
             "method": "direct"
         }
 
-    doc_embedding = np.array(embed_texts(text))
+    doc_embedding = encode_single_text(text)
     sentence_embeddings = [
-        np.array(embed_texts(sentence))
+        encode_single_text(sentence)
         for sentence in sentences
     ]
 

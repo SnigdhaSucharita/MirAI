@@ -31,10 +31,7 @@ def sentiment_distribution(sentiments: List[str]) -> dict:
 
 
 def cluster_reviews(reviews: List[str], k: int):
-    embeddings = np.array([
-    encode_text(r).reshape(-1)
-    for r in reviews
-    ])
+    embeddings = encode_text(reviews)
     model = KMeans(n_clusters=k, random_state=42, n_init=10)
     labels = model.fit_predict(embeddings)
     return labels

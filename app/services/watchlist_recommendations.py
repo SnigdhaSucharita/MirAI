@@ -1,5 +1,6 @@
 import numpy as np
-from app.services.semantic import embed_texts, cosine_similarity
+from app.services.semantic import cosine_similarity
+from app.models.clip_model import encode_text
 
 def explain_recommendation(candidate_vec, watchlist, watchlist_embeddings):
     similarities = [
@@ -29,8 +30,8 @@ def recommend_from_watchlist(
         for movie in candidates
     ]
 
-    watchlist_embeddings = embed_texts(watchlist_texts)
-    candidate_embeddings = embed_texts(candidate_texts)
+    watchlist_embeddings = encode_text(watchlist_texts)
+    candidate_embeddings = encode_text(candidate_texts)
 
     taste_vector = np.mean(watchlist_embeddings, axis=0)
 
