@@ -10,6 +10,13 @@ _model = None
 _preprocess = None
 
 
+def init_clip():
+    global _model, _preprocess
+    if _model is None:
+        _model, _preprocess = clip.load("ViT-B/32", device=DEVICE)
+        _model.eval()
+
+
 def get_clip_model():
     global _model, _preprocess
 
