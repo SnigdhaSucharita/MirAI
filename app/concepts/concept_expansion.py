@@ -8,7 +8,7 @@ def expand_concepts(image_path: str, candidate_concepts: list[str], top_k: int =
 
     similarities = image_features @ text_features.T   
 
-    scores = similarities.cpu().tolist()
+    scores = similarities.tolist()
 
     results = list(zip(candidate_concepts, scores))
     results.sort(key=lambda x: x[1], reverse=True)
