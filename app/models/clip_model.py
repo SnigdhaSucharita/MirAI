@@ -1,8 +1,10 @@
 import torch
+torch.set_num_threads(1)
 import clip
 import numpy as np
 from PIL import Image
-from app.core.config import DEVICE
+
+DEVICE = "cpu"
 
 _model = None
 _preprocess = None

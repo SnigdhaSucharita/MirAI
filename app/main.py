@@ -3,13 +3,11 @@ from app.routes.semantic import router as semantic_router
 from app.routes.picstoria import router as picstoria_router
 from app.routes.movique import router as movique_router
 from app.routes.docuvault import router as docuvault_router
-from app.models.clip_model import encode_single_text
 
 app = FastAPI(title="MirAI")
 
 @app.on_event("startup")
 def warmup():
-    encode_single_text("warmup")
     print("MirAI service starting up...")
     
 @app.get("/health")
