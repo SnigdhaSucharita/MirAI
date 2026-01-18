@@ -1,4 +1,5 @@
 import numpy as np
+import os
 import tempfile
 import requests
 from pathlib import Path
