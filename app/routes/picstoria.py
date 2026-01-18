@@ -2,7 +2,8 @@ from fastapi import APIRouter
 
 from app.schemas.picstoria import PicstoriaSemanticRequest, SmartTagRequest, ColorPaletteRequest, AnalyzeImageRequest
 
-from app.services.semantic import embed_texts, cosine_similarity
+from app.services.semantic import cosine_similarity
+from app.models.clip_model import encode_text
 from app.services.smart_tags import suggest_smart_tags
 from app.services.image_recommendation import recommend_images
 from app.services.color_palette import extract_color_palette
@@ -18,7 +19,7 @@ def picstoria_semantic_search(payload: PicstoriaSemanticRequest):
 
     texts = [payload.query] + [img.description for img in payload.images]
 
-    embeddings = embed_texts(texts)
+    embeddings = encode_text(texts)
 
     query_vector = embeddings[0]
     image_vectors = embeddings[1:]
