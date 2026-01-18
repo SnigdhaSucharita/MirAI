@@ -7,7 +7,8 @@ from app.routes.docuvault import router as docuvault_router
 app = FastAPI(title="MirAI")
 
 @app.on_event("startup")
-def startup_event():
+def warmup():
+    encode_single_text("warmup")
     print("MirAI service starting up...")
     
 @app.get("/health")

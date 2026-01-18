@@ -18,7 +18,7 @@ def get_clip_model():
     return _model, _preprocess
 
 
-def encode_image(image_path: str) -> torch.Tensor:
+def encode_image(image_path: str) -> np.ndarray:
     model, preprocess = get_clip_model()
 
     image = preprocess(
@@ -29,10 +29,11 @@ def encode_image(image_path: str) -> torch.Tensor:
         embedding = model.encode_image(image)
         embedding /= embedding.norm(dim=-1, keepdim=True)
 
-    return embedding.squeeze(0)
+    return embedding.squeeze(0).cpu().numpy()
 
 
-def encode_text(texts: list[str]) -> torch.Tensor:
+
+def encode_text(texts: list[str]) -> np.ndarray:
     model, _ = get_clip_model()
 
     tokens = clip.tokenize(texts).to(DEVICE)
@@ -41,7 +42,8 @@ def encode_text(texts: list[str]) -> torch.Tensor:
         embedding = model.encode_text(tokens)
         embedding /= embedding.norm(dim=-1, keepdim=True)
 
-    return embedding
+    return embedding.cpu().numpy()
+
 
 
 def encode_single_text(text: str) -> np.ndarray:
