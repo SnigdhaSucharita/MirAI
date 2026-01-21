@@ -9,7 +9,7 @@ class ImageItem(BaseModel):
 
 class PicstoriaSemanticRequest(BaseModel):
     query: str
-    images: List[ImageItem]
+    photos: List[ImageItem]
 
 
 class SmartTagRequest(BaseModel):

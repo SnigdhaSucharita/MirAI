@@ -17,7 +17,7 @@ def picstoria_semantic_search(payload: PicstoriaSemanticRequest):
     Re-rank Unsplash images based on semantic similarity
     """
 
-    texts = [payload.query] + [img.description for img in payload.images]
+    texts = [payload.query] + [img.description or img.altDescription or "" for img in payload.images]
 
     embeddings = encode_text(texts)
 
