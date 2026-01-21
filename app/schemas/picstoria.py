@@ -3,8 +3,8 @@ from typing import List
 
 class ImageItem(BaseModel):
     imageUrl: str
-    description: str
-    altDescription: str
+    description: Optional[str] = None
+    altDescription: Optional[str] = None
 
 
 class PicstoriaSemanticRequest(BaseModel):
