@@ -21,6 +21,12 @@ class ColorPaletteRequest(BaseModel):
     image_path: str
     num_colors: int = 6
 
+class RecommendImageRequest(BaseModel):
+    image_url: str
+    imagePool: List[ImageItem]
+    top_k: int
+    score_threshold: float
 
 class AnalyzeImageRequest(BaseModel):
     image_url: str
+
