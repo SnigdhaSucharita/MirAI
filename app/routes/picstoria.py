@@ -60,10 +60,10 @@ def picstoria_smart_tags(payload: SmartTagRequest):
 @router.post("/recommend-images")
 def image_recommendations(payload: RecommendImageRequest):
     image_candidates = recommend_images(
-        query_image_url=payload["image_url"],
-        image_pool=payload["image_pool"],
-        top_k=payload.get("top_k", 5),
-        score_threshold=payload.get("score_threshold", 0.25)
+        query_image_url=payload.image_url,
+        image_pool=payload.image_pool,
+        top_k=payload.top_k,
+        score_threshold=payload.score_threshold
     )
 
     return {

@@ -23,7 +23,7 @@ class ColorPaletteRequest(BaseModel):
 
 class RecommendImageRequest(BaseModel):
     image_url: str
-    imagePool: List[ImageItem]
+    image_pool: List[ImageItem]
     top_k: int
     score_threshold: float
 
