@@ -4,7 +4,6 @@ from typing import List, Optional
 class ImageItem(BaseModel):
     imageUrl: str
     description: Optional[str] = None
-    altDescription: Optional[str] = None
 
 
 class PicstoriaSemanticRequest(BaseModel):
